@@ -24,7 +24,12 @@ void APlaneController::OnPossess(APawn* InPawn)
 	{
 		for (const auto& Context : InputMappingContext)
 		{
-			InputSystem->AddMappingContext(Context, 0);
+			if (Context.IsValid())
+			{
+				InputSystem->AddMappingContext(Context.LoadSynchronous(), 0);
+				// InputSystem->AddMappingContext(Context.LoadAsync(), 0);
+				// LoadAsync의 경우 로드가 완료된 후에 AddMappingContext가 호출되도록 델리게이트를 설정해야 합니다.
+			}
 		}
 	}
 }
