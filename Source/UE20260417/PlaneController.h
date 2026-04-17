@@ -19,6 +19,6 @@ public:
 	virtual void OnPossess(APawn* InPawn) override;
 
 	UPROPERTY(EditAnywhere, Category = "Input")
-	TObjectPtr<UInputMappingContext> InputMappingContext;
+	TArray<UInputMappingContext*> InputMappingContext;
 	
 };

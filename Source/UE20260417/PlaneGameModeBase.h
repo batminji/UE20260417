@@ -17,4 +17,9 @@ class UE20260417_API APlaneGameModeBase : public AGameModeBase
 
 public:
 	APlaneGameModeBase();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Test")
+	float TestValue;
+
+	void TestReflection();
 };

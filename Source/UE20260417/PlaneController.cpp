@@ -13,17 +13,18 @@ void APlaneController::OnPossess(APawn* InPawn)
 {
 	Super::OnPossess(InPawn);
 
-	if(IsLocalPlayerController())
+	if (!IsLocalPlayerController())
 	{
-		if(ULocalPlayer* LocalPlayer = GetLocalPlayer())
+		return;
+	}
+
+	ULocalPlayer* LocalPlayer = GetLocalPlayer();
+	UEnhancedInputLocalPlayerSubsystem* InputSystem = LocalPlayer->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>();
+	if (InputSystem)
+	{
+		for (const auto& Context : InputMappingContext)
 		{
-			if (UEnhancedInputLocalPlayerSubsystem* InputSystem = LocalPlayer->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>())
-			{
-				if (InputMappingContext)
-				{
-					InputSystem->AddMappingContext(InputMappingContext, 0);
-				}
-			}
+			InputSystem->AddMappingContext(Context, 0);
 		}
 	}
 }
