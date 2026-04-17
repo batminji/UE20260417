@@ -7,6 +7,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/ArrowComponent.h"
+#include "RotateStaticMeshComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
 #include "EnhancedInputComponent.h"
 #include "Kismet/GameplayStatics.h"
@@ -34,6 +35,12 @@ APlanePawn::APlanePawn()
 
 	FloatingPawnMovement = CreateDefaultSubobject<UFloatingPawnMovement>(TEXT("FloatingPawnMovement"));
 	FloatingPawnMovement->MaxSpeed = MaxSpeed;
+
+	Left = CreateDefaultSubobject<URotateStaticMeshComponent>(TEXT("Left"));
+	Left->SetupAttachment(StaticMeshComponent);
+
+	Right = CreateDefaultSubobject<URotateStaticMeshComponent>(TEXT("Right"));
+	Right->SetupAttachment(StaticMeshComponent);
 }
 
 void APlanePawn::Rotate(const FInputActionValue& Value)

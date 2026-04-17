@@ -14,6 +14,7 @@ class USpringArmComponent;
 class UCameraComponent;
 class UFloatingPawnMovement;
 class UArrowComponent;
+class URotateStaticMeshComponent;
 
 UCLASS()
 class UE20260417_API APlanePawn : public APawn
@@ -41,6 +42,12 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	TObjectPtr<UArrowComponent> ArrowComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	TObjectPtr<URotateStaticMeshComponent> Left;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	TObjectPtr<URotateStaticMeshComponent> Right;
 
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> IA_Rotate;
